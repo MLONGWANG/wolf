@@ -1,157 +1,168 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>锅打灰太狼</title>
-		<style type="text/css">
-			*{
-				margin: 0;
-				padding: 0;
-				list-style: none;
-			}
-			.container{
-				width: 480px;
-				height: 720px;
-				margin: 0 auto;
-				position: relative;
-			}
-			.background{
-				position: absolute;
-				z-index: -100;
-				width: 100%;
-			}
-			.pro{
-				position: absolute;
-				width:270px;
-				height: 24px;
-				border-radius: 10px; 
-				left: 95px;
-				top: 99px;
-				background: url(img/progress.png) 0 0 no-repeat;
-				background-size: 100%;
-				background-position-x: 0px;
-			}
-			.start{
-				width: 250px;
-				border: 0;
-				border-radius: 30px;
-				background: linear-gradient(#E55C3D,#C50000);
-				margin: 0 auto;
-				font-size: 40px;
-				position: absolute;
-				color: #fff;
-				left: 0;
-				right: 0;
-				margin: 0 auto;
-				top:400px;
-			}
-			.start:hover{
-				background: linear-gradient(#C50000,#E55C3D);
-			}
-			.score{
-				position: absolute;
-				left: 100px;
-				top: 20px;
-				color: #fff;
-			}
-			.over{
-				text-align: center;
-				position: relative;
-				top: 300px;
-				font-weight: bold;
-				display: none;
-				font-size: 60px;
-				text-shadow: 3px 3px 0 #fff;
-				background: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(255, 0, 0, 1)), to(rgba(0, 0, 213, 1)));
-			    -webkit-background-clip: text;
-			    -webkit-text-fill-color: transparent;
-			}
-			.restart{
-				width: 250px;
-				border: 0;
-				border-radius: 30px;
-				background: linear-gradient(#74ACCF,#007DDC);
-				margin: 0 auto;
-				font-size: 40px;
-				position: absolute;
-				color: #fff;
-				left: 0;
-				right: 0;
-				margin: 0 auto;
-				top:400px;
-				display: none;
-			}
-			.restart:hover{
-				background: linear-gradient(#007DDC,#74ACCF);
-			}
-			.rules{
-				border: 0;
-				width: 100%;
-				position: absolute;
-				bottom: 0px;
-				font-size: 20px;
-			}
-			.rule{
-				position: absolute;
-				width: 100%;
-				height: 500px;
-				text-align: center;
-				background: #000;
-				opacity: 0.8;
-				padding-top: 200px;
-			}
-			.rule p{
-				padding: 20px 0;
-				font-size: 20px;
-				color: #fff;
-			}
-			.rule{
-				padding-bottom: 20px;
-				display: none;
-				position: absolute;
-				z-index: 1000000000000;
-			}
-			a{
-				font-size: 20px;
-				color: red;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<h1 class="score">0</h1>
-			<img src="img/game_bg.jpg" style="width: 100%;" class="background"/>
-			<div class="pro"></div>
-			<button class="start">开始游戏</button>
-			<h1 class="over">GAME OVER</h1>
-			<button class="restart">重新开始</button>
-			<button class="rules">游戏规则</button>
-			<div class="rule">
-				<p>游戏规则:</p>
-				<p>1.游戏时间:60s</p>
-				<p>2.拼手速,殴打灰太狼+10分</p>
-				<p>3.殴打小灰灰-10分</p>
-				<a href="#">[关闭]</a>
-			</div>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#wrap{
+			cursor: pointer;
+			width: 320px;
+			height: 480px;
+			background: url('img/game_bg.jpg') 0 0 no-repeat;
+			margin: 0 auto;
+			position: relative;
+		}
+		#wolfBox div{
+
+			width: 108px;
+			height: 101px;
+			position: absolute;
+			background-repeat: no-repeat;
+		}
+		#score{
+			position: absolute;
+			font-size: 24px;
+			color:white;
+			font-family: arial;
+			left: 55px;
+			top:8px;
+		}
+		#timeBar{
+			width: 180px;
+			height: 16px;
+			background: url('img/progress.png') 0 0 no-repeat;
+			position: absolute;
+			left: 63px;
+			top:66px;
+		}
+		#menu{
+			position: absolute;
+			width: 100%;
+			top:175px;
+		}
+		#menu a,#over{
+			color:#fd5f02;
+			text-shadow: 0 0 5px #fbed30;
+			font-size: 34px;
+			text-align: center;
+		}
+		#menu a{
+			display: block;
+			text-decoration: none;
+			font-weight: bold;
+		}
+		#over{
+			display: none;
+			font-family: arial;
+			position: absolute;
+			width: 100%;
+			top:220px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="score"></div>
+		<div id="timeBar"></div>
+		<div id="wolfBox"></div>
+		<div id="menu">
+			<a href="javascript:void(0)">游戏开始</a>
+			<a href="javascript:void(0)">游戏操作说明</a>
 		</div>
-	</body>
-	<script src="js/hmk01.js" type="text/javascript" charset="utf-8"></script>
+		<div id="over">game over!</div>
+	</div>
+	<script type="text/javascript">
+		var wrap = document.getElementById('wrap');
+		var wolfBox = document.getElementById('wolfBox');
+		var scoreBox = document.getElementById('score');
+		var timeBar = document.getElementById('timeBar');
+		var menu = document.getElementById('menu');
+		var over = document.getElementById('over');
+		var begin = menu.children[0];
+		var manual = menu.children[0];
+		var perWidth = timeBar.offsetWidth;
+		var score = 0;
+		var posList = [
+			{l:"95px",t:"114px"},
+			{l:"182px",t:"141px"},
+			{l:"14px",t:"160px"},
+			{l:"15px",t:"221px"},
+			{l:"101px",t:"192px"},
+			{l:"197px",t:"213px"},
+			{l:"28px",t:"294px"},
+			{l:"116px",t:"274px"},
+			{l:"204px",t:"296px"}
+		];
+		var pos = [];
+		function createWolf(){
+				var wolf = document.createElement('div');
+				var rnd = Math.floor(Math.random()*9);
+				var who = Math.random()>0.8?"x":"h";
+				var index = 0;
+				var flag = true;
+				var clickFlag = false;
+				wolf.style.backgroundImage = "url(img/"+who+".png)";
+				while(pos.indexOf(rnd)>-1){
+					rnd = Math.floor(Math.random()*9);
+				}
+				pos.push(rnd);
+				if(pos.length>4){
+					pos.shift();
+				}
+				wolf.style.left = posList[rnd].l;
+				wolf.style.top = posList[rnd].t;
+				wolfBox.appendChild(wolf);
+				wolf.onclick = function(){
+					index = 5;
+					clickFlag = true;
+					wolf.onclick = null;
+					if(who=="h"){
+						score +=10;
+					}else{
+						score -=10;
+					}
+					scoreBox.innerHTML = score;
+				}
+				var goTime = setInterval(function() {
+					if(flag||clickFlag){
+						index++;
+					}else{
+						index--;
+					}
+					if(index>=5){
+						flag = false;
+					}
+					if(index<0||index>9){
+						clearInterval(goTime);
+						wolfBox.removeChild(wolf);
+					}
+					wolf.style.backgroundPosition = -index*108 + "px 0";
+				}, 100);
+		}
+		function Time(){
+			var time = setInterval(createWolf, 1000);
+			var gameTime = setInterval(function() {
+				perWidth--;
+				if(perWidth<0){
+					clearInterval(time);
+					if(wolfBox.children.length==0){
+						over.style.display = "block";
+						clearInterval(gameTime);
+					}
+				}
+				timeBar.style.width = perWidth + "px";
+			}, 50);
+		}
+		begin.onclick = function(){
+			menu.style.display = "none";
+			Time();
+			createWolf();
+		}
+	</script>
+</body>
 </html>
-<!--1.
-		2.创建狼
-			生成一个狼——是生成小灰灰还是灰太狼
-			随机一个位置——判断该位置是否有狼
-			无,则把狼放到该位置
-		3.狼动画
-			狼上升
-			定时器更改图片路径实现动画
-			判断是否到了最上面的位置
-			是则下降
-			下降到最底部把狼删掉——清空该清空的定时器
-		4.打狼
-			不管原先狼的动画跑到第几帧,
-			把帧数设置成打狼的动画
-			打灰太狼加分
-			打小灰灰减分
-		5.游戏结束
-			把页面的数据还原到初始状态-->
